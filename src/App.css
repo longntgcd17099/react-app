@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@300;500;600&family=Open+Sans:wght@300;400;500;700&family=Roboto:wght@300&display=swap');
+* {
+  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+.layout-page {
+  padding: 0 300px;
+  height: 770px;
+  background-color: #e9e8e3
+}
+
+@media screen and (max-width: 1199.98px) {
+  .layout-page {
+    padding: 0 200px;
+  }
+}
+
+@media screen and (max-width: 991.98px) {
+  .layout-page {
+    padding: 0 150px;
+  }
+}
+
+@media screen and (max-width: 575.98px) {
+  .layout-page {
+    padding: 0 50px;
+  }
+}
