@@ -15,6 +15,7 @@ const ButtonPage = ({ onClick, variant, text, extraClass }: AddProps) => (
     onClick={onClick}
     variant={variant}
     className={extraClass}
+    type="submit"
   >
     {text}
   </Button>

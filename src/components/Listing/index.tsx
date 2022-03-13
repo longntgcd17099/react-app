@@ -10,7 +10,7 @@ import ListingRow from '../ListingRow';
 interface Props {
   tableHeader: string[];
   listProduct: Product[];
-  onEditProduct?: () => void;
+  onEditProduct: (product: Product) => void;
 }
 
 const Listing = ({ tableHeader, listProduct, onEditProduct }: Props): JSX.Element => {
@@ -19,15 +19,13 @@ const Listing = ({ tableHeader, listProduct, onEditProduct }: Props): JSX.Elemen
       <table className="table table-success table-borderless table-hover">
         <ListingHeader tableHeader={tableHeader} />
         <tbody>
-          {
-            listProduct.map((product) => (
-              <ListingRow
-                key={product.id}
-                product={product}
-                onEditProduct={onEditProduct}
-              />
-            ))
-          }
+          {listProduct.map((product) => (
+            <ListingRow
+              key={product.id}
+              product={product}
+              onEditProduct={() =>onEditProduct(product)}
+            />
+          ))}
         </tbody>
       </table>
     </div>

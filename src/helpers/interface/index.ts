@@ -5,7 +5,6 @@ export interface Product {
   brandId: number;
   brandName?: string;
 }
-
 export interface Brand {
   id?: number;
   name: string;

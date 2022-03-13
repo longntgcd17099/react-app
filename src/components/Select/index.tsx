@@ -16,7 +16,7 @@ interface Props {
 const Select = ({labelName, brands, onChange, defaultValue}: Props) => (
   <Form.Group className="mb-3">
     <Form.Label>{labelName}</Form.Label>
-    <Form.Select onChange={onChange} value={defaultValue}>
+    <Form.Select onChange={onChange} defaultValue={defaultValue}>
       {brands.map(({id, name}) => (
         <option value={id} key={id}>
           {name}

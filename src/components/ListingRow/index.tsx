@@ -12,7 +12,7 @@ interface Props {
   onEditProduct?: () => void;
 }
 
-const ListingRow = ({ product: { name, brandName, price }, onEditProduct }: Props) => {
+const ListingRow = ({ product: { name, brandName, price}, onEditProduct }: Props) => {
   return (
     <tr className="list-order">
       <td className="fw-bold col-3" scope="row">
@@ -21,13 +21,13 @@ const ListingRow = ({ product: { name, brandName, price }, onEditProduct }: Prop
       <td className="col-3">{name}</td>
       <td className="col-3">{price + ' $'}</td>
       <td className="col-3">
-      <ButtonPage
-          extraClass='mx-1'
+        <ButtonPage
+          extraClass="mx-1"
           variant={ButtonVariant.DANGER}
           text={ButtonText.DELETE}
         />
         <ButtonPage
-          extraClass='mx-1'
+          extraClass="mx-1"
           variant={ButtonVariant.WARNING}
           text={ButtonText.EDIT_PRODUCTS}
           onClick={onEditProduct}

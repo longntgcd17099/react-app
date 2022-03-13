@@ -3,7 +3,7 @@ import React, { useCallback, useState } from 'react';
 //Types
 import { Brand, Product } from '../../helpers/interface';
 import { ButtonText, ButtonVariant } from '../../constants/enum/button';
-import { Type } from '../../constants/enum/type-modal';
+import { TypeModal } from '../../constants/enum/type-modal';
 
 //Components
 import Listing from '../Listing';
@@ -19,18 +19,18 @@ interface Props {
 
 const Layout = ({ tableHeader, listProduct, listNameBrand, onResult }: Props): JSX.Element => {
   const [visible, setVisible] = useState(false);
-  const [typeModal, setTypeModal] = useState<Type>(Type.ADD);
+  const [typeModal, setTypeModal] = useState<TypeModal>(TypeModal.ADD);
   const [defaultValue, setDefaultValue] = useState<Product | undefined>(undefined);
 
   const handleAddProduct = useCallback(() => {
     setVisible(true);
-    setTypeModal(Type.ADD);
-    setDefaultValue(undefined);
+    setTypeModal(TypeModal.ADD);
   }, [])
 
-  const handleEditProduct = useCallback(() => {
+  const handleEditProduct = useCallback((product: Product) => {
     setVisible(true);
-    setTypeModal(Type.EDIT);
+    setTypeModal(TypeModal.EDIT);
+    setDefaultValue(product)
   }, [])
 
   const closeModal = () => {
@@ -42,7 +42,7 @@ const Layout = ({ tableHeader, listProduct, listNameBrand, onResult }: Props): J
       <div className="layout-page text-center">
         <h1 className="py-4">List Product Brand</h1>
         <ButtonPage
-          extraClass='mb-3'
+          extraClass="mb-3"
           variant={ButtonVariant.PRIMARY}
           text={ButtonText.ADD_PRODUCTS}
           onClick={handleAddProduct}
@@ -67,3 +67,4 @@ const Layout = ({ tableHeader, listProduct, listNameBrand, onResult }: Props): J
 };
 
 export default React.memo(Layout);
+

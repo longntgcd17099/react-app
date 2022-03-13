@@ -4,23 +4,23 @@ import React, { useEffect, useState } from 'react';
 import { ButtonText, ButtonVariant } from '../../constants/enum/button';
 import { InputLabel, SelectLabel, InputType, InputId, InputMessage } from '../../constants/enum/input-select';
 import { Brand, Product } from '../../helpers/interface';
-import { Type } from '../../constants/enum/type-modal';
+import { TypeModal } from '../../constants/enum/type-modal';
 
 //Components
 import InputField from '../../components/Input';
 import Select from '../../components/Select';
 import ButtonPage from '../../components/Button'
 import { Form } from 'react-bootstrap';
-
+import { editProduct } from '../EditProduct';
 export interface ModalProps {
-  type: Type;
+  type: TypeModal;
   brand: Brand[];
   onResult: (result: Product[]) => void;
-  defaultValue?: Product;
   listProducts?: Product[];
+  defaultValue?: Product;
 }
 
-const AddNewProduct = ({ type = Type.EDIT, brand, defaultValue, listProducts, onResult }: ModalProps) => {
+const AddNewProduct = ({ type = TypeModal.ADD, brand, listProducts, onResult, defaultValue }: ModalProps) => {
   const defaultField = {
     name: '',
     price: 0,
@@ -66,15 +66,23 @@ const AddNewProduct = ({ type = Type.EDIT, brand, defaultValue, listProducts, on
       setValidated(true);
       return;
     }
-    if (type === Type.ADD) {
+    if (type === TypeModal.ADD) {
       const newProducts = !!listProducts
         ? handleAddProduct(listProducts, { ...valueForm, id: listProducts.length + 1 })
         : [];
+      
+      console.log({ newProducts });
+
       onResult(newProducts);
       setValueForm(defaultField);
       return;
     } else {
-
+      const newProducts = !!listProducts ? editProduct(listProducts, valueForm) : [];
+      
+      console.log({ newProducts });
+      
+      onResult(newProducts);
+      return;
     }
   }
 
@@ -109,7 +117,7 @@ const AddNewProduct = ({ type = Type.EDIT, brand, defaultValue, listProducts, on
       <ButtonPage
         extraClass='mx-1'
         variant={ButtonVariant.PRIMARY}
-        text={type === Type.ADD
+        text={type === TypeModal.ADD
           ? ButtonText.ADD_PRODUCTS
           : ButtonText.EDIT_PRODUCTS}
       />

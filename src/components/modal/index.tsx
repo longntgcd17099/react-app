@@ -6,30 +6,30 @@ import { Modal as ModalBootsrap } from 'react-bootstrap';
 //Types
 import { ButtonText } from '../../constants/enum/button';
 import { Brand, Product } from '../../helpers/interface';
-import { Type } from '../../constants/enum/type-modal';
+import { TypeModal } from '../../constants/enum/type-modal';
 
 //Components
 import AddNewProduct from '../../features/AddNewProduct';
 
 export interface ModalProps {
   isVisible: boolean;
-  type: Type;
+  type: TypeModal;
   brand: Brand[];
-  onHide?: () => void;
   onResult: (product: Product[]) => void;
+  onHide?: () => void;
   listProducts?: Product[];
-  defaultValue?: Product
+  defaultValue?: Product;
 }
 
 const Modal = ({
   isVisible = false,
   onHide,
-  type = Type.EDIT,
+  type = TypeModal.EDIT,
   brand,
   onResult,
   listProducts,
-  defaultValue }: ModalProps
-) => {
+  defaultValue
+}: ModalProps) => {
 
   return (
     <ModalBootsrap
@@ -41,14 +41,14 @@ const Modal = ({
     >
       <ModalBootsrap.Header closeButton>
         <ModalBootsrap.Title id="contained-modal-title-vcenter">
-          {type === Type.ADD
+          {type === TypeModal.ADD
             ? ButtonText.ADD_PRODUCTS
             : ButtonText.EDIT_PRODUCTS}
         </ModalBootsrap.Title>
       </ModalBootsrap.Header>
       <ModalBootsrap.Body>
         <AddNewProduct
-          type={Type.ADD}
+          type={TypeModal.ADD}
           brand={brand}
           onResult={onResult}
           listProducts={listProducts}
