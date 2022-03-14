@@ -48,7 +48,7 @@ const Modal = ({
       </ModalBootsrap.Header>
       <ModalBootsrap.Body>
         <AddNewProduct
-          type={TypeModal.ADD}
+          type={type}
           brand={brand}
           onResult={onResult}
           listProducts={listProducts}
